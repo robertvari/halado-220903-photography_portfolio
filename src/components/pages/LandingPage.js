@@ -1,5 +1,5 @@
 import React from 'react'
-import ImageSlider from './micro/ImageSlider'
+import ImageSlider from '../micro/ImageSlider'
 
 export default function LandingPage() {
   return (
