@@ -1,0 +1,23 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root{
+    --nav-gray: #1C1C1C;
+    --title-yellow: #FF7A00;
+    --default-border: 1px solid rgba(255, 255, 255, 0.137);
+    --default-bg-color: #2B2B2B;
+    --default-text-color: #C6C6C6;
+}
+
+body{
+    background-color: var(--default-bg-color);
+    color: var(--default-text-color);
+    font-family: 'Montserrat', sans-serif;
+}
+
+h1, h2{
+    font-weight: 100;
+}
