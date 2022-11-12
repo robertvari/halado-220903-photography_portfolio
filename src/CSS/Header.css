@@ -34,3 +34,8 @@ nav a{
 nav a:hover{
     color: var(--title-yellow);
 }
+
+header i{
+    font-size: 40px;
+    margin: 0 10px
+}
