@@ -5,10 +5,12 @@ import LandingPage from "./components/LandingPage";
 function App() {
   return (
     <div className="App">
-      <Header/>
+      <div>
+        <Header/>
 
-      <LandingPage/>
-      
+        <LandingPage/>
+      </div>
+
       <Footer/>
     </div>
   );
