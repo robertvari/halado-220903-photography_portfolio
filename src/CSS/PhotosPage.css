@@ -1,0 +1,23 @@
+.category-card-container{
+    height: 500px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-decoration: none;
+}
+
+.category-card-container img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    position: absolute;
+    opacity: 0.3;
+}
+
+.category-card-container h1{
+    font-size: 120px;
+    position: relative;
+}
