@@ -1,0 +1,6 @@
+.image-slider-container{
+    position: relative;
+    height: 600px;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
