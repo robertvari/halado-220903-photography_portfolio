@@ -10,7 +10,6 @@ export default function Header() {
         <div>photography</div>
       </Link>
 
-
       <nav>
         <Link to="/about">about</Link>
         <Link to="/photos">photos</Link>

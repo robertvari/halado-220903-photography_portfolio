@@ -1,6 +1,7 @@
 @import "Footer.css";
 @import "Header.css";
 @import "ImageSlider.css";
+@import "AboutPage.css";
 
 
 *{
@@ -33,4 +34,8 @@ body{
 
 h1, h2{
     font-weight: 100;
+}
+
+p{
+    margin-bottom: 20px;
 }
