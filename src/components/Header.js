@@ -1,8 +1,10 @@
 import React from 'react'
 import SocialLinks from './micro/SocialLinks'
-import {Link} from "react-router-dom"
+import {Link, useLocation} from "react-router-dom"
 
 export default function Header() {
+  const location = useLocation()
+
   return (
     <header>
       <Link to="/" className='page-title-container'>
@@ -11,9 +13,9 @@ export default function Header() {
       </Link>
 
       <nav>
-        <Link to="/about">about</Link>
-        <Link to="/photos">photos</Link>
-        <Link to="/contact">contact</Link>
+        <Link to="/about" className={location.pathname === "/about"? "active":""}>about</Link>
+        <Link to="/photos" className={location.pathname === "/photos"? "active":""}>photos</Link>
+        <Link to="/contact" className={location.pathname === "/contact"? "active":""}>contact</Link>
       </nav>
 
       <SocialLinks/>

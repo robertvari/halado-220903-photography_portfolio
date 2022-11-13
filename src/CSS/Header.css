@@ -39,3 +39,7 @@ header i{
     font-size: 40px;
     margin: 0 10px
 }
+
+nav a.active{
+    color: var(--title-yellow)
+}
