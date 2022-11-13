@@ -44,3 +44,16 @@ p{
 .content-container{
     padding-top: 100px;
 }
+
+/* scrollbar style */
+::-webkit-scrollbar{
+    width: 5px;
+}
+
+::-webkit-scrollbar-track{
+    background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb{
+    background-color: var(--title-yellow);
+}
