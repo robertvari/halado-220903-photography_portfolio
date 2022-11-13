@@ -5,6 +5,7 @@ import Masonry from 'react-masonry-css'
 
 export default function GalleryPage() {
     const {category} = useParams()
+    const [current_image, set_current_image] = useState(null)
     const [images, set_images] = useState([])
 
     useEffect(() => {
@@ -14,15 +15,29 @@ export default function GalleryPage() {
         }).then(res => set_images(res.data))
     }, [])
 
+    useEffect(() => {
+        if(current_image){
+            document.body.style.overflowY = "hidden"
+        }else{
+            document.body.style.overflowY = "auto"
+        }
+    }, [current_image])
+
     return (
         <div className='gallery-container'>
+            {
+                current_image&& <div className='image-viewer' onClick={e => set_current_image(null)}><img src={current_image} alt="" /></div>
+            }
+
             <Masonry
                 breakpointCols={4}
                 className="my-masonry-grid"
                 columnClassName="my-masonry-grid_column">
                 {
                     images.filter(image_data => image_data.category === category)
-                    .map(data => <img key={data.id} src={data.image}/>)
+                    .map(data => 
+                    <img key={data.id} src={data.image} onClick={e => set_current_image(data.image)}/>
+                    )
                 }
             </Masonry>
         </div>
