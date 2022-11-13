@@ -1,10 +1,20 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
+import axios from 'axios';
 
 export default function ContactPage() {
+  const [email, set_email] = useState("")
+
+  useEffect(() => {
+    axios({
+      method: "get",
+      url: "http://localhost:3001/site-info"
+    }).then(res => set_email(res.data.email))
+  }, [])
+
   return (
     <div className='contact-container'>
       <h1>Let's work together</h1>
-      <h2>atomhartwin@gmail.com</h2>
+      <h2>{email}</h2>
 
       <form action="">
         <h2>name</h2>
