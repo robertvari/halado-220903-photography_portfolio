@@ -1,19 +1,24 @@
-import React from 'react'
-import ProfilePic from "../../Images/profile-pic.jpg"
+import React, { useState, useEffect } from 'react'
+import axios from 'axios'
+
 
 export default function AboutPage() {
+  const [image, set_image] = useState("")
+  const [text, set_text] = useState("")
+
+  useEffect(() => {
+    axios({
+      method: "get",
+      url: "http://localhost:3001/about"
+    }).then(res => {set_image(res.data.image); set_text(res.data.text)})
+  }, [])
+
   return (
     <div className='about-container'>
-      <img src={ProfilePic} alt="" />
+      <img src={image} alt="" />
 
       <div className='text-container'>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint impedit dignissimos aliquam, nihil ut debitis perferendis autem fuga fugit iure, adipisci alias. Recusandae, eligendi repudiandae eveniet odio dolorum aliquid facere! Facere aut soluta, corporis debitis numquam, voluptate saepe ab possimus, et vitae perspiciatis dolores iusto. Quos iste alias, recusandae beatae magnam cupiditate accusantium eaque architecto earum fugit ab laboriosam sit tenetur odit. Possimus quis voluptatibus velit, culpa numquam iusto. Eligendi aspernatur distinctio tempore nam vel, harum veniam obcaecati ad autem magnam deserunt sit. Distinctio, ducimus quibusdam! Tenetur suscipit aperiam iure, vero maxime ipsam, nisi totam laborum, perspiciatis commodi vel voluptatum.</p>
-
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint impedit dignissimos aliquam, nihil ut debitis perferendis autem fuga fugit iure, adipisci alias. Recusandae, eligendi repudiandae eveniet odio dolorum aliquid facere! Facere aut soluta, corporis debitis numquam, voluptate saepe ab possimus, et vitae perspiciatis dolores iusto. Quos iste alias, recusandae beatae magnam cupiditate accusantium eaque architecto earum fugit ab laboriosam sit tenetur odit. Possimus quis voluptatibus velit, culpa numquam iusto. Eligendi aspernatur distinctio tempore nam vel, harum veniam obcaecati ad autem magnam deserunt sit. Distinctio, ducimus quibusdam! Tenetur suscipit aperiam iure, vero maxime ipsam, nisi totam laborum, perspiciatis commodi vel voluptatum.</p>
-
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint impedit dignissimos aliquam, nihil ut debitis perferendis autem fuga fugit iure, adipisci alias. Recusandae, eligendi repudiandae eveniet odio dolorum aliquid facere! Facere aut soluta, corporis debitis numquam, voluptate saepe ab possimus, et vitae perspiciatis dolores iusto. Quos iste alias, recusandae beatae magnam cupiditate accusantium eaque architecto earum fugit ab laboriosam sit tenetur odit. Possimus quis voluptatibus velit, culpa numquam iusto. Eligendi aspernatur distinctio tempore nam vel, harum veniam obcaecati ad autem magnam deserunt sit. Distinctio, ducimus quibusdam! Tenetur suscipit aperiam iure, vero maxime ipsam, nisi totam laborum, perspiciatis commodi vel voluptatum.</p>
-
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint impedit dignissimos aliquam, nihil ut debitis perferendis autem fuga fugit iure, adipisci alias. Recusandae, eligendi repudiandae eveniet odio dolorum aliquid facere! Facere aut soluta, corporis debitis numquam, voluptate saepe ab possimus, et vitae perspiciatis dolores iusto. Quos iste alias, recusandae beatae magnam cupiditate accusantium eaque architecto earum fugit ab laboriosam sit tenetur odit. Possimus quis voluptatibus velit, culpa numquam iusto. Eligendi aspernatur distinctio tempore nam vel, harum veniam obcaecati ad autem magnam deserunt sit. Distinctio, ducimus quibusdam! Tenetur suscipit aperiam iure, vero maxime ipsam, nisi totam laborum, perspiciatis commodi vel voluptatum.</p>
+        <p>{text}</p>
       </div>
     </div>
   )
