@@ -1,10 +1,28 @@
-import React from 'react'
+import axios from 'axios'
+import React, { useState, useEffect } from 'react'
 import ImageSlider from '../micro/ImageSlider'
 
 export default function LandingPage() {
+  const [images, set_images] = useState([])
+  const [title, set_title] = useState("")
+  const [slogen, set_slogen] = useState("")
+
+  const fetch_data = () => {
+    axios({
+      method: "get",
+      url: "http://localhost:3001/landing-page"
+    }).then(res => {
+      set_images(res.data.images)
+      set_title(res.data.title)
+      set_slogen(res.data.slogen)
+    })
+  }
+
+  useEffect(fetch_data, [])
+
   return (
     <div>
-      <ImageSlider images={["https://source.unsplash.com/random/?city&1"]} title="Ut nec vulputate erat" slogen="Nunc sodales velit quis sem ullamcorper euismod. Morbi elementum risus non arcu pellentesque pellentesque. Duis id neque dui. Etiam ut pellentesque tellus, nec mollis odio."/>
+      <ImageSlider images={images} title={title} slogen={slogen}/>
     </div>
   )
 }
