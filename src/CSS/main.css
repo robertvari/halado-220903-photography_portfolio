@@ -17,7 +17,7 @@
     --default-border: 1px solid rgba(255, 255, 255, 0.137);
     --default-bg-color: #2B2B2B;
     --default-text-color: #C6C6C6;
-    --default-padding: 30px 50px;
+    --default-padding: 20px 50px;
 }
 
 body{
@@ -39,4 +39,8 @@ h1, h2{
 
 p{
     margin-bottom: 20px;
+}
+
+.content-container{
+    padding-top: 100px;
 }

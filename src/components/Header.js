@@ -9,7 +9,7 @@ export default function Header() {
     <header>
       <Link to="/" className='page-title-container'>
         <h1>Atum Hartwin</h1>
-        <div>photography</div>
+        <h2>photography</h2>
       </Link>
 
       <nav>
