@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react'
 import SocialLinks from './micro/SocialLinks'
 import {Link, useLocation} from "react-router-dom"
 import axios from 'axios'
+import {motion} from "framer-motion"
 
 export default function Header() {
   const location = useLocation()
@@ -18,14 +19,15 @@ export default function Header() {
   return (
     <header>
       <Link to="/" className='page-title-container'>
-        <h1>{name}</h1>
-        <h2>{subtitle}</h2>
+        <motion.h1 initial={{opacity:0, x:-100}} animate={{opacity:1, x:0}}>{name}</motion.h1>
+        
+        <motion.h2 initial={{opacity:0, x:-100}} animate={{opacity:1, x:0, transition:{delay:0.2}}}>{subtitle}</motion.h2>
       </Link>
 
       <nav>
-        <Link to="/about" className={location.pathname === "/about"? "active":""}>about</Link>
-        <Link to="/photos" className={location.pathname === "/photos"? "active":""}>photos</Link>
-        <Link to="/contact" className={location.pathname === "/contact"? "active":""}>contact</Link>
+        <motion.div whileHover={{scale:1.3}}> <Link to="/about" className={location.pathname === "/about"? "active":""}>about</Link> </motion.div>
+        <motion.div whileHover={{scale:1.3}}><Link to="/photos" className={location.pathname === "/photos"? "active":""}>photos</Link></motion.div>
+        <motion.div whileHover={{scale:1.3}}><Link to="/contact" className={location.pathname === "/contact"? "active":""}>contact</Link></motion.div>
       </nav>
 
       <SocialLinks/>
