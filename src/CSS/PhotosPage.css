@@ -35,3 +35,19 @@
     transition: all 0.5s;
     transform: translateY(-20px)
 }
+
+/* mobile */
+@media only screen and (max-width: 500px){
+    .category-card-container{
+        max-height: 200px;
+    }
+
+    .category-card-container h1{
+        opacity: 1;
+        font-size: 75px;
+    }
+
+    .category-card-container img{
+        opacity: 0.5;
+    }
+}
