@@ -18,11 +18,13 @@ export default function Header() {
 
   return (
     <header>
-      <Link to="/" className='page-title-container'>
-        <motion.h1 initial={{opacity:0, x:-100}} animate={{opacity:1, x:0}}>{name}</motion.h1>
-        
-        <motion.h2 initial={{opacity:0, x:-100}} animate={{opacity:1, x:0, transition:{delay:0.2}}}>{subtitle}</motion.h2>
-      </Link>
+      <motion.div whileHover={{scale:1.14}}>
+        <Link to="/" className='page-title-container'>
+          <motion.h1 initial={{opacity:0, x:-100}} animate={{opacity:1, x:0}}>{name}</motion.h1>
+          
+          <motion.h2 initial={{opacity:0, x:-100}} animate={{opacity:1, x:0, transition:{delay:0.2}}}>{subtitle}</motion.h2>
+        </Link>
+      </motion.div>
 
       <nav>
         <motion.div whileHover={{scale:1.3}}> <Link to="/about" className={location.pathname === "/about"? "active":""}>about</Link> </motion.div>
