@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-
+import {motion} from "framer-motion"
 
 export default function AboutPage() {
   const [image, set_image] = useState("")
@@ -15,11 +15,11 @@ export default function AboutPage() {
 
   return (
     <div className='about-container'>
-      <img src={image} alt="" />
+      <motion.img src={image} alt="" initial={{opacity: 0, x:-100}} animate={{opacity:1, x:0}}/>
 
-      <div className='text-container'>
+      <motion.div className='text-container' initial={{opacity: 0, x:100}} animate={{opacity:1, x:0}}>
         <p>{text}</p>
-      </div>
+      </motion.div>
     </div>
   )
 }
