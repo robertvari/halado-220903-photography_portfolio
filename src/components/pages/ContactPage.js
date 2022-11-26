@@ -1,8 +1,25 @@
 import React, {useEffect, useState} from 'react'
 import axios from 'axios';
+import {motion} from "framer-motion"
+
 
 export default function ContactPage() {
   const [email, set_email] = useState("")
+
+  const variants ={
+    hidden: {opacity: 0},
+    show: {opacity:1, transition: {staggerChildren: 0.05}}
+  }
+
+  const label_item = {
+    hidden:{opacity:0, x: -100},
+    show:{opacity:1, x: 0, transition: {duration: 0.1}}
+  }
+
+  const input_item = {
+    hidden:{opacity:0, x: 100},
+    show:{opacity:1, x: 0, transition: {duration: 0.1}}
+  }
 
   useEffect(() => {
     axios({
@@ -12,25 +29,25 @@ export default function ContactPage() {
   }, [])
 
   return (
-    <div className='contact-container'>
+    <motion.div className='contact-container' initial={{opacity:0}} animate={{opacity:1}}>
       <h1>Let's work together</h1>
       <h2>{email}</h2>
 
-      <form action="">
-        <h2>name</h2>
-        <input type="text" />
+      <motion.form action="" variants={variants} initial="hidden" animate="show">
+        <motion.h2 variants={label_item}>name</motion.h2>
+        <motion.input type="text" variants={input_item}/>
 
-        <h2>email</h2>
-        <input type="text" />
+        <motion.h2 variants={label_item}>email</motion.h2>
+        <motion.input type="text" variants={input_item}/>
 
-        <h2>phone</h2>
-        <input type="text" />
+        <motion.h2 variants={label_item}>phone</motion.h2>
+        <motion.input type="text" variants={input_item}/>
 
-        <h2>message</h2>
-        <textarea name="" id="" cols="30" rows="10"></textarea>
-      </form>
+        <motion.h2 variants={label_item}>message</motion.h2>
+        <motion.textarea name="" id="" cols="30" rows="10" variants={input_item}></motion.textarea>
+      </motion.form>
 
-      <button>send</button>
-    </div>
+      <motion.button initial={{opacity: 0, x:50}} animate={{opacity:1, x:0, transition:{delay:0.3}}}>send</motion.button>
+    </motion.div>
   )
 }
