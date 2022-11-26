@@ -16,8 +16,13 @@
     object-position: center;
     object-fit: cover;
     position: absolute;
-    opacity: 0.3;
+    opacity: 0;
+    transition: all 1s;
     filter: grayscale(1);
+}
+
+.image-slider-container .visible{
+    opacity: 0.3;
 }
 
 .image-slider-container h1{
