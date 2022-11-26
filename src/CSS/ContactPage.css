@@ -3,6 +3,7 @@
     flex-direction: column;
     max-width: 500px;
     margin: 0 auto;
+    overflow: hidden;
 }
 
 .contact-container h1,
@@ -51,4 +52,11 @@ button:hover{
     background-color: var(--title-yellow);
     color: white;
     transform: scale(1.1);
+}
+
+/* mobile */
+@media only screen and (max-width: 500px){
+    .contact-container form{
+        grid-template-columns: 120px auto;
+    }
 }
