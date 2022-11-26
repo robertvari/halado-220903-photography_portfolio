@@ -17,7 +17,7 @@ function MenuItems() {
 }
 
 export default function Header() {
-
+  const [mobile_menu, set_mobile_menu] = useState(false)
   const [name, set_name] = useState("")
   const [subtitle, set_subtitle] = useState("")
 
@@ -46,14 +46,17 @@ export default function Header() {
         <SocialLinks/>
       </div>
 
-      <div className='nav-mobile'>
-        <i className="fa fa-bars" aria-hidden="true"/>
-      </div>
 
-      <div className='mobile-menu'>
-        <MenuItems/>
-        <SocialLinks/>
-      </div>
+      <i className="fa fa-bars mobile-button" aria-hidden="true" onClick={e => set_mobile_menu(!mobile_menu)}/>
+
+      {
+        mobile_menu&&
+        <div className='mobile-menu'>
+          <MenuItems/>
+          <SocialLinks/>
+        </div>
+      }
+
     </header>
   )
 }

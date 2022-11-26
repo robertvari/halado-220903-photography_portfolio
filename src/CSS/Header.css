@@ -52,7 +52,7 @@ nav a.active{
     color: var(--title-yellow)
 }
 
-header .nav-mobile{
+header .mobile-button{
     display: none;
 }
 
@@ -80,7 +80,7 @@ header .mobile-menu a{
     margin: 0 20px;
 }
 
-header .mobile-menu i{
+header .mobile-button{
     font-size: 40px;
 }
 
@@ -95,6 +95,6 @@ header .mobile-menu i{
 @media only screen and (max-width: 500px){
     header .nav-desktop {display: none}
     header .social-desktop {display: none}
-    header .nav-mobile {display: block}
+    header .mobile-button {display: block}
     header .mobile-menu{display: flex}
 }
