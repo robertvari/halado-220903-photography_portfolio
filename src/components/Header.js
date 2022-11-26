@@ -1,11 +1,23 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, Fragment} from 'react'
 import SocialLinks from './micro/SocialLinks'
 import {Link, useLocation} from "react-router-dom"
 import axios from 'axios'
 import {motion} from "framer-motion"
 
-export default function Header() {
+function MenuItems() {
   const location = useLocation()
+
+  return(
+    <Fragment>
+        <motion.div whileHover={{scale:1.3}}> <Link to="/about" className={location.pathname === "/about"? "active":""}>about</Link> </motion.div>
+        <motion.div whileHover={{scale:1.3}}><Link to="/photos" className={location.pathname === "/photos"? "active":""}>photos</Link></motion.div>
+        <motion.div whileHover={{scale:1.3}}><Link to="/contact" className={location.pathname === "/contact"? "active":""}>contact</Link></motion.div>
+    </Fragment>
+  )
+}
+
+export default function Header() {
+
   const [name, set_name] = useState("")
   const [subtitle, set_subtitle] = useState("")
 
@@ -26,13 +38,22 @@ export default function Header() {
         </Link>
       </motion.div>
 
-      <nav>
-        <motion.div whileHover={{scale:1.3}}> <Link to="/about" className={location.pathname === "/about"? "active":""}>about</Link> </motion.div>
-        <motion.div whileHover={{scale:1.3}}><Link to="/photos" className={location.pathname === "/photos"? "active":""}>photos</Link></motion.div>
-        <motion.div whileHover={{scale:1.3}}><Link to="/contact" className={location.pathname === "/contact"? "active":""}>contact</Link></motion.div>
+      <nav className='nav-desktop'>
+        <MenuItems/>
       </nav>
 
-      <SocialLinks/>
+      <div className='social-desktop'>
+        <SocialLinks/>
+      </div>
+
+      <div className='nav-mobile'>
+        <i className="fa fa-bars" aria-hidden="true"/>
+      </div>
+
+      <div className='mobile-menu'>
+        <MenuItems/>
+        <SocialLinks/>
+      </div>
     </header>
   )
 }

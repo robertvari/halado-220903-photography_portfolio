@@ -31,7 +31,8 @@ nav{
     display: inherit;
 }
 
-nav a{
+nav a
+{
     color: inherit;
     font-size: 20px;
     text-decoration: none;
@@ -49,4 +50,51 @@ header i{
 
 nav a.active{
     color: var(--title-yellow)
+}
+
+header .nav-mobile{
+    display: none;
+}
+
+.nav-mobile i{
+    font-size: 30px;
+}
+
+header .mobile-menu{
+    display: none;
+    position: fixed;
+    top: 93px;
+    left: 0;
+    background-color: var(--nav-gray);
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 15px 5px;
+}
+
+header .mobile-menu a{
+    color: inherit;
+    font-size: 30px;
+    text-decoration: none;
+    margin: 0 20px;
+}
+
+header .mobile-menu i{
+    font-size: 40px;
+}
+
+.mobile-menu .social-links-container{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+/* Mobile styles */
+@media only screen and (max-width: 500px){
+    header .nav-desktop {display: none}
+    header .social-desktop {display: none}
+    header .nav-mobile {display: block}
+    header .mobile-menu{display: flex}
 }
