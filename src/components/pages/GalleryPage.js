@@ -10,6 +10,12 @@ export default function GalleryPage() {
     const [current_image, set_current_image] = useState(null)
     const [images, set_images] = useState([])
 
+    const breakpoints = {
+        default: 4,
+        700: 2,
+        500: 1
+    }
+
     useEffect(() => {
         axios({
             method: "get",
@@ -35,7 +41,7 @@ export default function GalleryPage() {
             }
 
             <Masonry
-                breakpointCols={4}
+                breakpointCols={breakpoints}
                 className="my-masonry-grid"
                 columnClassName="my-masonry-grid_column">
                 {
