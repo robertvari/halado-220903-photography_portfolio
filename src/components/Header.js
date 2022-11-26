@@ -31,7 +31,7 @@ export default function Header() {
   return (
     <header>
       <motion.div whileHover={{scale:1.14}}>
-        <Link to="/" className='page-title-container'>
+        <Link to="/" className='page-title-container' onClick={e => set_mobile_menu(false)}>
           <motion.h1 initial={{opacity:0, x:-100}} animate={{opacity:1, x:0}}>{name}</motion.h1>
           
           <motion.h2 initial={{opacity:0, x:-100}} animate={{opacity:1, x:0, transition:{delay:0.2}}}>{subtitle}</motion.h2>
@@ -51,9 +51,10 @@ export default function Header() {
 
       {
         mobile_menu&&
-        <div className='mobile-menu'>
+        <div className='mobile-menu' onClick={e => set_mobile_menu(!mobile_menu)}>
           <MenuItems/>
           <SocialLinks/>
+          <div className='close-menu-container' onClick={e => set_mobile_menu(!mobile_menu)}/>
         </div>
       }
 
