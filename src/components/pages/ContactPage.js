@@ -21,10 +21,12 @@ export default function ContactPage() {
     show:{opacity:1, x: 0, transition: {duration: 0.1}}
   }
 
+  let API_URL = process.env.REACT_APP_API_URL
+
   useEffect(() => {
     axios({
       method: "get",
-      url: "http://localhost:3001/site-info"
+      url: `${API_URL}/siteinfo/`
     }).then(res => set_email(res.data.email))
   }, [])
 

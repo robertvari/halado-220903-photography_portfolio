@@ -16,10 +16,12 @@ export default function GalleryPage() {
         500: 1
     }
 
+    let API_URL = process.env.REACT_APP_API_URL
+
     useEffect(() => {
         axios({
             method: "get",
-            url: "http://localhost:3001/photos"
+            url: `${API_URL}/gallery/`
         }).then(res => set_images(res.data))
     }, [])
 

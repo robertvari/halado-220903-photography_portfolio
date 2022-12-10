@@ -6,10 +6,12 @@ export default function AboutPage() {
   const [image, set_image] = useState("")
   const [text, set_text] = useState("")
 
+  let API_URL = process.env.REACT_APP_API_URL
+
   useEffect(() => {
     axios({
       method: "get",
-      url: "http://localhost:3001/about"
+      url: `${API_URL}/about/`
     }).then(res => {set_image(res.data.image); set_text(res.data.text)})
   }, [])
 

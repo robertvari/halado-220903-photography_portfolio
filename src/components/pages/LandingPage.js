@@ -7,10 +7,12 @@ export default function LandingPage() {
   const [title, set_title] = useState("")
   const [slogen, set_slogen] = useState("")
 
+  let API_URL = process.env.REACT_APP_API_URL
+
   const fetch_data = () => {
     axios({
       method: "get",
-      url: "http://localhost:3001/landing-page"
+      url: `${API_URL}/landing-page/`
     }).then(res => {
       set_images(res.data.images)
       set_title(res.data.title)

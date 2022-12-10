@@ -13,11 +13,7 @@ function CategoryCard({image, title, to}){
 
 
 export default function PhotosPage() {
-  const [images, set_images] = useState([])
-  const [wedding, set_wedding] = useState("")
-  const [nature, set_nature] = useState("")
-  const [urban, set_urban] = useState("")
-  const [portrait, set_portrait] = useState("")
+  const [categories, set_categories] = useState([])
 
   const variants = {
     hidden: {opacity: 0},
@@ -29,29 +25,15 @@ export default function PhotosPage() {
     show: {opacity: 1, y:0, transition:{duration: 0.2}}
   }
 
-  const get_random_item = (items) => {
-    return items[ Math.floor(Math.random() * items.length)]
-  }
+  let API_URL = process.env.REACT_APP_API_URL
 
   useEffect(() => {
     axios({
-      url: "http://localhost:3001/photos",
+      url: `${API_URL}/categories/`,
       method: "get"
-    }).then(res => set_images(res.data))
+    }).then(res => set_categories(res.data))
   }, [])
 
-  useEffect(() => {
-    if(images.length > 0){
-      set_wedding( get_random_item(images.filter(image_data => image_data.category === "wedding")).image )
-      set_urban(get_random_item(images.filter(image_data => image_data.category === "urban")).image)
-      set_nature(get_random_item(images.filter(image_data => image_data.category === "nature")).image)
-      set_portrait(get_random_item(images.filter(image_data => image_data.category === "portrait")).image)
-
-      console.log(
-        images.filter(image_data => image_data.category === "wedding")
-      )
-    }
-  }, [images])
 
   return (
     <motion.div
@@ -60,10 +42,9 @@ export default function PhotosPage() {
       animate="show"
     >
 
-      <motion.div variants={item}><CategoryCard image={wedding} title="wedding" to="/wedding"/></motion.div>
-      <motion.div variants={item}><CategoryCard image={nature} title="nature" to="/nature"/></motion.div>
-      <motion.div variants={item}><CategoryCard image={urban} title="urban" to="/urban"/></motion.div>
-      <motion.div variants={item}><CategoryCard image={portrait} title="portrait" to="/portrait"/></motion.div>
+      {
+        categories.map(category_data => <CategoryCard image={category_data.image} title={category_data.name} to={`/${category_data.name}/`}/>)
+      }
     
     </motion.div>
   )

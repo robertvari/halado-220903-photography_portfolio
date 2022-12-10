@@ -21,10 +21,12 @@ export default function Header() {
   const [name, set_name] = useState("")
   const [subtitle, set_subtitle] = useState("")
 
+  let API_URL = process.env.REACT_APP_API_URL
+
   useEffect(() => {
     axios({
       method: "get",
-      url: "http://localhost:3001/site-info"
+      url: `${API_URL}/siteinfo/`
     }).then(res => {set_name(res.data.name); set_subtitle(res.data.subtitle)})
   }, [])
 
