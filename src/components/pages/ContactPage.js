@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, {Fragment, useEffect, useState} from 'react'
 import axios from 'axios';
 import {motion} from "framer-motion"
 
@@ -17,6 +17,9 @@ export default function ContactPage() {
 
   const [message, set_message] = useState("")
   const [message_error, set_message_error] = useState(false)
+
+  const [sending, set_sending] = useState(false)
+  const [contact_sent, set_contact_sent] = useState(false)
 
 
   const variants ={
@@ -72,12 +75,21 @@ export default function ContactPage() {
     return form_valid
   }
 
-  const send_form = (e) => {
+  const send_form = async(e) => {
     e.preventDefault()
 
     if(!check_errors()) return
 
-    console.log("send form")
+    set_sending(true)
+
+    await axios({
+      method: "post",
+      url: `${API_URL}/contact/`,
+      data:{name, email, phone, message}
+    })
+
+    set_sending(false)
+    set_contact_sent(true)
   }
 
   useEffect(() => {
@@ -89,37 +101,49 @@ export default function ContactPage() {
 
   return (
     <motion.div className='contact-container' initial={{opacity:0}} animate={{opacity:1}}>
-      <h1>Let's work together</h1>
-      <h2>{contact_email}</h2>
+      
+      {
+        sending?
+        <h1>Sending contact....</h1>
+        :
+        contact_sent?
+        <h1>Thank you for contacting me.</h1>
+        :
+        <Fragment>
+          <h1>Let's work together</h1>
+          <h2>{contact_email}</h2>
+          
+          <motion.form action="" variants={variants} initial="hidden" animate="show">
+            <motion.h2 variants={label_item}>name</motion.h2>
 
-      <motion.form action="" variants={variants} initial="hidden" animate="show">
-        <motion.h2 variants={label_item}>name</motion.h2>
+            <div>
+              {name_error&& <small className='error'>Name Error</small>}
+              <motion.input type="text" className={`${name_error? "error-field": ""}`} variants={input_item} value={name} onChange={e => set_name(e.target.value)}/>
+            </div>
 
-        <div>
-          {name_error&& <small className='error'>Name Error</small>}
-          <motion.input type="text" className={`${name_error? "error-field": ""}`} variants={input_item} value={name} onChange={e => set_name(e.target.value)}/>
-        </div>
+            <motion.h2 variants={label_item}>email</motion.h2>
+            <div>
+              {email_error&& <small className='error'>Email Error</small>}
+              <motion.input className={`${email_error? "error-field": ""}`} type="text" variants={input_item} value={email} onChange={e => set_email(e.target.value)}/>
+            </div>
 
-        <motion.h2 variants={label_item}>email</motion.h2>
-        <div>
-          {email_error&& <small className='error'>Email Error</small>}
-          <motion.input className={`${email_error? "error-field": ""}`} type="text" variants={input_item} value={email} onChange={e => set_email(e.target.value)}/>
-        </div>
+            <motion.h2 variants={label_item}>phone</motion.h2>
+            <div>
+              {phone_error&& <small className='error'>Phone Error</small>}
+              <motion.input className={`${phone_error? "error-field": ""}`} type="text" variants={input_item} value={phone} onChange={e => set_phone(e.target.value)}/>
+            </div>
 
-        <motion.h2 variants={label_item}>phone</motion.h2>
-        <div>
-          {phone_error&& <small className='error'>Phone Error</small>}
-          <motion.input className={`${phone_error? "error-field": ""}`} type="text" variants={input_item} value={phone} onChange={e => set_phone(e.target.value)}/>
-        </div>
+            <motion.h2 variants={label_item}>message</motion.h2>
+            <div>
+              {message_error&& <small className='error'>Message Error</small>}
+              <motion.textarea className={`${message_error? "error-field": ""}`} cols="30" rows="10" variants={input_item} value={message} onChange={e => set_message(e.target.value)}/>
+            </div>
+          </motion.form>
 
-        <motion.h2 variants={label_item}>message</motion.h2>
-        <div>
-          {message_error&& <small className='error'>Message Error</small>}
-          <motion.textarea className={`${message_error? "error-field": ""}`} cols="30" rows="10" variants={input_item} value={message} onChange={e => set_message(e.target.value)}/>
-        </div>
-      </motion.form>
+          <motion.button initial={{opacity: 0, x:50}} animate={{opacity:1, x:0, transition:{delay:0.3}}} onClick={send_form}>send</motion.button>
+        </Fragment>
+      }
 
-      <motion.button initial={{opacity: 0, x:50}} animate={{opacity:1, x:0, transition:{delay:0.3}}} onClick={send_form}>send</motion.button>
     </motion.div>
   )
 }
