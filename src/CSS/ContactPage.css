@@ -33,6 +33,7 @@ input, textarea{
     outline: none;
     border: none;
     border-radius: 5px;
+    width: 100%
 }
 
 textarea{
@@ -52,6 +53,16 @@ button:hover{
     background-color: var(--title-yellow);
     color: white;
     transform: scale(1.1);
+}
+
+.error{
+    color: red;
+    position: absolute;
+    transform: translateY(-16px);
+}
+
+.error-field{
+    border: 2px solid red
 }
 
 /* mobile */
